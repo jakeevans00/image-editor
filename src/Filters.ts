@@ -24,7 +24,20 @@ const grayscale = (image: Image) => {
 };
 
 const invert = (image: Image) => {
-  return new Image(0, 0);
+  let update = new Image(image.getWidth(), image.getHeight());
+  for (let x = 0; x < image.getWidth(); ++x) {
+    for (let y = 0; y < image.getHeight(); ++y) {
+      let currColor = image.get(x, y);
+
+      currColor.red = 255 - currColor.red;
+      currColor.green = 255 - currColor.green;
+      currColor.blue = 255 - currColor.blue;
+
+      update.set(x, y, currColor);
+    }
+  }
+
+  return update;
 };
 
 const emboss = (image: Image) => {
@@ -58,7 +71,7 @@ const motionblur = (image: Image, length?: number) => {
     }
   }
 
-  return image;
+  return resultImage;
 };
 
 export const filters: {
