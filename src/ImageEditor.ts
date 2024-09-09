@@ -18,9 +18,9 @@ export class ImageEditor {
   };
 
   read = (inputFile: string) => {
-    const data = readFileSync(`media/source_images/${inputFile}`, "utf8")
-      .split(" ")
-      .slice(1);
+    const data = readFileSync(`media/source_images/${inputFile}`, "utf8").split(
+      /\s+/
+    );
     return parseImage(data);
   };
 

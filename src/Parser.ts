@@ -12,6 +12,7 @@ export const parseImage = (arr: string[]) => {
 
   try {
     let index = 0;
+    index++;
 
     const width = Number(arr[index++]);
     const height = Number(arr[index++]);
@@ -29,6 +30,7 @@ export const parseImage = (arr: string[]) => {
       }
     }
   } catch (err) {
+    console.log("Error in parseImage");
     throw err;
   }
 
