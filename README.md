@@ -9,4 +9,12 @@ Demostrates mathematical transformations including:
 - Emboss
 - Motionblur
 
-Academic program used to demonstrate Typescript's developer-friendliness using software design principles.
+Academic program used to demonstrate Typescript's developer-friendliness using solid software design principles.
+
+### Example Usage:
+
+1. `npm run build`
+2. `node dist/Main.js <inputFile> <outputFile> <grayscale|emboss|invert|motionblur {length}>`
+
+![Penguins](./media/source_images/Penguins.jpg)
+![Penguins Inverted](/media/key_images/invert-Penguins.jpg)
