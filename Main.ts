@@ -1,17 +1,16 @@
 import { ImageEditor } from "./src/ImageEditor";
-import { usage } from "./src/Printer";
+import { usage } from "./src/Parser";
 
 const main = () => {
   const args = process.argv.slice(2);
   if (args.length < 3) {
+    console.log("Not enough arguments, see 'USAGE', below");
     usage();
     return;
   }
 
-  const [inputFile, outputFile, filter, blurLength] = args;
-
   const imageEditor = new ImageEditor();
-  imageEditor.run(process.argv.slice(2));
+  imageEditor.run(args);
 };
 
 main();
