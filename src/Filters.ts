@@ -76,16 +76,17 @@ const emboss = (image: Image) => {
 const motionblur = (image: Image, length?: number) => {
   if (!length || length < 1) {
     throw new Error(
-      "Invalid parameters provided, please provide a numeric 'length'"
+      "Invalid parameter provided for 'length.' Try a value between 1 and 20"
     );
   }
 
-  let resultImage = new Image(image.getWidth(), image.getHeight());
+  let update = new Image(image.getWidth(), image.getHeight());
 
-  for (let x = 0; x < image.getWidth(); ++x) {
-    for (let y = 0; y < image.getHeight(); ++y) {
+  for (let x = 0; x < update.getWidth(); ++x) {
+    for (let y = 0; y < update.getHeight(); ++y) {
       let currColor = image.get(x, y);
-      let maxX = Math.max(image.getWidth() - 1, x + length - 1);
+
+      let maxX = Math.min(update.getWidth() - 1, x + length - 1);
       for (let i = x + 1; i <= maxX; ++i) {
         let tempColor = image.get(i, y);
         currColor.red += tempColor.red;
@@ -94,13 +95,15 @@ const motionblur = (image: Image, length?: number) => {
       }
 
       const delta = maxX - x + 1;
-      currColor.red /= Math.floor(delta);
-      currColor.green /= Math.floor(delta);
-      currColor.blue /= Math.floor(delta);
+      currColor.red = Math.floor(currColor.red / delta);
+      currColor.green = Math.floor(currColor.green / delta);
+      currColor.blue = Math.floor(currColor.blue / delta);
+
+      update.set(x, y, currColor);
     }
   }
 
-  return resultImage;
+  return update;
 };
 
 export const filters: {
